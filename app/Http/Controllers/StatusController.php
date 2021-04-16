@@ -14,7 +14,9 @@ class StatusController extends Controller
      */
     public function index()
     {
-        //
+        $statuses = Status::all();
+        return view('status.index', ['statuses' => $statuses]);
+ 
     }
 
     /**
@@ -24,7 +26,8 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('status.create');
+
     }
 
     /**
@@ -35,7 +38,11 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $status = new Status;
+        $status->status_name = $request->status_name;
+        $status->save();
+        return redirect()->route('status.index');
+
     }
 
     /**
@@ -57,7 +64,7 @@ class StatusController extends Controller
      */
     public function edit(Status $status)
     {
-        //
+        return view('status.edit', ['status' => $status]);
     }
 
     /**
@@ -69,7 +76,10 @@ class StatusController extends Controller
      */
     public function update(Request $request, Status $status)
     {
-        //
+        $status->status_name = $request->status_name;
+        $status->save();
+        return redirect()->route('status.index');
+ 
     }
 
     /**
@@ -80,6 +90,8 @@ class StatusController extends Controller
      */
     public function destroy(Status $status)
     {
-        //
+        $status->delete();
+        return redirect()->route('status.index');
+ 
     }
 }
