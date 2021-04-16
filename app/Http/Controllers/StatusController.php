@@ -41,7 +41,7 @@ class StatusController extends Controller
         $status = new Status;
         $status->status_name = $request->status_name;
         $status->save();
-        return redirect()->route('status.index');
+        return redirect()->route('status.index')->with('success_message', 'The Status has been created.');
 
     }
 
@@ -78,7 +78,7 @@ class StatusController extends Controller
     {
         $status->status_name = $request->status_name;
         $status->save();
-        return redirect()->route('status.index');
+        return redirect()->route('status.index')->with('success_message', 'The Status has been updated.');
  
     }
 
@@ -91,10 +91,10 @@ class StatusController extends Controller
     public function destroy(Status $status)
     {
         if($status->statusTasks->count()){
-            return 'This Status can not be deleted, because it is used in the Task list!';
+            return redirect()->route('status.index')->with('info_message', 'This Status can not be deleted, because it is used in the Task list!');
         }
         $status->delete();
-        return redirect()->route('status.index');
- 
+        return redirect()->route('status.index')->with('success_message', 'The Status has been deleted.');
+
     }
 }

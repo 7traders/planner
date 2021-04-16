@@ -46,7 +46,7 @@ class TaskController extends Controller
         $task->deadline = $request->deadline;
         $task->status_id = $request->status_id;
         $task->save();
-        return redirect()->route('task.index');
+        return redirect()->route('task.index')->with('success_message', 'The Task has been created.');
  
     }
 
@@ -88,7 +88,7 @@ class TaskController extends Controller
         $task->deadline = $request->deadline;
         $task->status_id = $request->status_id;
         $task->save();
-        return redirect()->route('task.index');
+        return redirect()->route('task.index')->with('success_message', 'The Task has been updated.');
 
     }
 
@@ -101,7 +101,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        return redirect()->route('task.index');
+        return redirect()->route('task.index')->with('success_message', 'The Task has been deleted.');
  
     }
 }
