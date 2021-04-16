@@ -61,7 +61,7 @@
 
 
                         @csrf
-                        <button type="submit">ADD</button>
+                        <button type="submit" class="btn btn-success">ADD</button>
                     </form>
 
 

@@ -12,12 +12,28 @@ class StatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $statuses = Status::all();
-        return view('status.index', ['statuses' => $statuses]);
+
+
+
+
+    // public function index()
+    // {
+    //     $statuses = Status::all();
+    //     return view('status.index', ['statuses' => $statuses]);
  
+    // }
+    public function index(Request $request)
+    {
+        if ('status_name' == $request->sort) {
+            $statuses = Status::orderBy('status_name')->get();
+        }
+        else {
+            $statuses = Status::all();
+        }
+        return view('status.index', ['statuses' => $statuses]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.

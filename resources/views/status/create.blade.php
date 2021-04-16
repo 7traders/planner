@@ -24,7 +24,7 @@
                         <small class="form-text text-muted">Enter Status Name</small>
                      </div>
                      @csrf
-                     <button type="submit">ADD</button>
+                     <button type="submit" class="btn btn-success">ADD</button>
                   </form>
 
 

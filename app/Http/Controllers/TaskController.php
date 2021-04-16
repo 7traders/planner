@@ -13,12 +13,26 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $tasks = Task::all();
-        return view('task.index', ['tasks' => $tasks]);
+
+
+
+    // public function index()
+    // {
+    //     $tasks = Task::all();
+    //     return view('task.index', ['tasks' => $tasks]);
  
+    // }
+    public function index(Request $request)
+    {
+        if ('deadline' == $request->sort) {
+            $tasks = Task::orderBy('deadline')->get();
+        }
+        else {
+            $tasks = Task::all();
+        }
+        return view('task.index', ['tasks' => $tasks]);
     }
+
 
     /**
      * Show the form for creating a new resource.
