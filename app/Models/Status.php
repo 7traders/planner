@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
+
+    public function statusTasks()
+    {
+        return $this->hasMany('App\Models\Task', 'status_id', 'id');
+    }
+ 
 }

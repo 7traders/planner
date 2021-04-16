@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Models\Status;
 
 class TaskController extends Controller
 {
@@ -14,7 +15,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::all();
+        return view('task.index', ['tasks' => $tasks]);
+ 
     }
 
     /**
@@ -24,7 +27,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $statuses = Status::all();
+        return view('task.create', ['statuses' => $statuses]);
+ 
     }
 
     /**
@@ -35,7 +40,15 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = new Task;
+        $task->task_name = $request->task_name;
+        $task->task_description = $request->task_description;
+        $task->status_id = $request->status_id;
+        $task->add_date = $request->add_date;
+        $task->completed_date = $request->completed_date;
+        $task->save();
+        return redirect()->route('task.index');
+ 
     }
 
     /**
@@ -57,7 +70,9 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        $statuses = Status::all();
+        return view('task.edit', ['task' => $task, 'statuses' => $statuses]);
+ 
     }
 
     /**
@@ -69,7 +84,14 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->task_name = $request->task_name;
+        $task->task_description = $request->task_description;
+        $task->status_id = $request->status_id;
+        $task->add_date = $request->add_date;
+        $task->completed_date = $request->completed_date;
+        $task->save();
+        return redirect()->route('task.index');
+
     }
 
     /**
@@ -80,6 +102,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route('task.index');
+ 
     }
 }

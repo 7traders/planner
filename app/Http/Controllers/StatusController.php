@@ -90,6 +90,9 @@ class StatusController extends Controller
      */
     public function destroy(Status $status)
     {
+        if($status->statusTasks->count()){
+            return 'This Status can not be deleted, because it is used in the Task list!';
+        }
         $status->delete();
         return redirect()->route('status.index');
  
