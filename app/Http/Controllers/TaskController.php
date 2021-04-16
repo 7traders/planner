@@ -43,9 +43,8 @@ class TaskController extends Controller
         $task = new Task;
         $task->task_name = $request->task_name;
         $task->task_description = $request->task_description;
+        $task->deadline = $request->deadline;
         $task->status_id = $request->status_id;
-        $task->add_date = $request->add_date;
-        $task->completed_date = $request->completed_date;
         $task->save();
         return redirect()->route('task.index');
  
@@ -86,9 +85,8 @@ class TaskController extends Controller
     {
         $task->task_name = $request->task_name;
         $task->task_description = $request->task_description;
+        $task->deadline = $request->deadline;
         $task->status_id = $request->status_id;
-        $task->add_date = $request->add_date;
-        $task->completed_date = $request->completed_date;
         $task->save();
         return redirect()->route('task.index');
 
